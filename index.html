@@ -1,6 +1,4 @@
 
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +21,7 @@
       --text: #1a1a2e;
       --muted: #888;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--dark);
@@ -115,7 +111,7 @@
     }
     .profile-wrap .subtitle {
       color: var(--gold);
-      font-size: 11px;
+      font-size: 1px;
       letter-spacing: 4px;
       text-transform: uppercase;
       font-weight: 500;
@@ -283,7 +279,7 @@
     .addr-block { padding: 4px 0; }
     .addr-block p {
       font-size: 12px;
-      color: #55;
+      color: #555;
       line-height: 1.9;
       margin: 0;
     }
@@ -330,7 +326,7 @@
     }
     .album-item:hover { transform: scale(1.03); }
     .album-item img {
-      width: 10%; height: 100%;
+      width: 100%; height: 10%;
       object-fit: cover;
       transition: transform 0.4s;
     }
@@ -405,7 +401,7 @@
     .footer {
       text-align: center;
       padding: 30px 16px 24px;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,25,255,0.2);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -420,17 +416,15 @@
     }
     .fade-up.show { opacity: 1; transform: translateY(0); }
 
-    /* hidden file inputs */
     .hidden-input { display: none; }
 
-    /* ── SECTION LABEL ── */
     .section-label {
       padding: 0 20px;
       margin-bottom: 10px;
     }
     .section-label span {
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 70;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
@@ -439,11 +433,9 @@
 </head>
 <body>
 
-  <!-- ══════════════ HERO ══════════════ -->
+  <!-- ═════ HERO ══════════════ -->
   <div class="hero">
-    <!-- DUMMY HERO IMAGE — replace src with your own -->
-    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80"
-         alt="Family" class="hero-img"
+    <img src="images/family-main.jpg" alt="Family" class="hero-img"
          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a3c6e,#0a1628)'">
     <div class="hero-overlay"></div>
     <div class="hero-badge">V-Card</div>
@@ -455,10 +447,8 @@
 
   <!-- ══════════════ PROFILE ══════════════ -->
   <div class="profile-wrap fade-up">
-    <!-- DUMMY AVATAR — replace src with your own -->
     <div class="main-avatar">
-      <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=300&q=80"
-           alt="Family"
+      <img src="images/family-main.jpg" alt="Family Avatar"
            onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-home\\' style=\\'font-size:36px;color:#c8a951;margin-top:28px\\'></i>';">
     </div>
     <h1>Ganesh Family</h1>
@@ -491,7 +481,6 @@
         <small>4 Members</small>
       </div>
     </div>
-    <!-- Members injected by JS -->
   </div>
 
   <div class="gold-divider"><span></span><i class="fas fa-diamond"></i><span></span></div>
@@ -524,7 +513,7 @@
 
   <div class="gold-divider"><span></span><i class="fas fa-diamond"></i><span></span></div>
 
-  <!-- ══════════════ ALBUM ══════════════ -->
+  <!-- ══════════════ ALBUM ═════ -->
   <div class="section-label fade-up"><span>Family Album</span></div>
 
   <div class="info-card fade-up">
@@ -534,11 +523,10 @@
       </div>
       <div>
         <h6>Memories</h6>
-        <small>Unlimited Photos</small>
+        <small>9 Photos</small>
       </div>
     </div>
     <div class="album-scroll" id="albumScroll">
-      <!-- Photos injected by JS -->
       <div class="album-add" onclick="document.getElementById('albumInput').click()">
         <i class="fas fa-plus"></i>
         <span>Add Photo</span>
@@ -562,7 +550,7 @@
 
   <script>
     /* ═══════════════════════════════════════
-       DATA — Replace photo URLs with your own
+       DATA — All image paths connected
     ═══════════════════════════════════════ */
     const familyMembers = [
       {
@@ -571,8 +559,7 @@
         role: 'Father',
         phone: '+91 99805 62722',
         phoneClean: '919980562722',
-        // 👇 REPLACE with your image URL or local path
-        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+        photo: 'images/ganesh.jpg',
         initials: 'KG'
       },
       {
@@ -581,8 +568,7 @@
         role: 'Mother',
         phone: '+91 99865 22722',
         phoneClean: '919986522722',
-        // 👇 REPLACE with your image URL or local path
-        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
+        photo: 'images/rashmi.jpg',
         initials: 'RS'
       },
       {
@@ -591,8 +577,7 @@
         role: 'Son',
         phone: '+91 90191 52722',
         phoneClean: '919019152722',
-        // 👇 REPLACE with your image URL or local path
-        photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+        photo: 'images/vishwesh.jpg',
         initials: 'VK'
       },
       {
@@ -601,20 +586,22 @@
         role: 'Son',
         phone: '+91 90192 02722',
         phoneClean: '919019202722',
-        // 👇 REPLACE with your image URL or local path
-        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80',
+        photo: 'images/vidyashankar.jpg',
         initials: 'VG'
       }
     ];
 
-    // 👇 ADD / REMOVE album photos freely — unlimited
+    // Album photos: a1.jpg through a9.jpg
     let albumPhotos = [
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'images/a1.jpg',
+      'images/a2.jpg',
+      'images/a3.jpg',
+      'images/a4.jpg',
+      'images/a5.jpg',
+      'images/a6.jpg',
+      'images/a7.jpg',
+      'images/a8.jpg',
+      'images/a9.jpg',
     ];
 
     /* ═══════════════════════════════════════
@@ -658,7 +645,7 @@
 
     /* ═══════════════════════════════════════
        UPLOAD MEMBER PHOTO (browser)
-    ═══════════════════════════════════════ */
+    ═══════════ */
     function uploadMemberPhoto(event, id) {
       const file = event.target.files[0];
       if (!file) return;
@@ -677,7 +664,7 @@
 
     /* ═══════════════════════════════════════
        RENDER ALBUM
-    ═══════════════════════════════════════ */
+    ═══════════════ */
     function renderAlbum() {
       const scroll = document.getElementById('albumScroll');
       const addBtn = scroll.querySelector('.album-add');
@@ -700,7 +687,7 @@
 
     /* ═══════════════════════════════════════
        ALBUM UPLOAD (unlimited)
-    ═══════════════════════════════════════ */
+    ═══════════ */
     function handleAlbumUpload(event) {
       const files = event.target.files;
       Array.from(files).forEach(file => {
@@ -714,7 +701,7 @@
       event.target.value = '';
     }
 
-    /* ═══════════════════════════════════════
+    /* ═══════════
        LIGHTBOX
     ═══════════════════════════════════════ */
     let lbIndex = 0;
@@ -744,7 +731,7 @@
 
     /* ═══════════════════════════════════════
        SAVE CONTACT (VCF)
-    ═══════════════════════════════════════ */
+    ═══════════════════════════════ */
     function downloadVCF() {
       let vcard = 'BEGIN:VCARD\nVERSION:3.0\nFN:Ganesh Family\nN:Ganesh;K S;;;\nNOTE:Bangalore, India\nEND:VCARD\n';
       familyMembers.forEach(m => {
@@ -757,7 +744,7 @@
       a.click();
     }
 
-    /* ═══════════════════════════════════════
+    /* ═══════════════════
        SHARE
     ═══════════════════════════════════════ */
     function shareCard() {
@@ -781,7 +768,7 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-    /* ═══════════════════════════════════════
+    /* ═══════
        INIT
     ═══════════════════════════════════════ */
     renderMembers();
@@ -789,4 +776,3 @@
   </script>
 </body>
 </html>
-
