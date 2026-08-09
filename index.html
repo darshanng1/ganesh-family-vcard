@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +110,7 @@
     }
     .profile-wrap .subtitle {
       color: var(--gold);
-      font-size: 1px;
+      font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
       font-weight: 500;
@@ -326,7 +325,7 @@
     }
     .album-item:hover { transform: scale(1.03); }
     .album-item img {
-      width: 100%; height: 10%;
+      width: 100%; height: 100%;
       object-fit: cover;
       transition: transform 0.4s;
     }
@@ -401,7 +400,7 @@
     .footer {
       text-align: center;
       padding: 30px 16px 24px;
-      color: rgba(255,25,255,0.2);
+      color: rgba(255,255,255,0.2);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -424,7 +423,7 @@
     }
     .section-label span {
       font-size: 10px;
-      font-weight: 70;
+      font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
@@ -435,7 +434,7 @@
 
   <!-- ═════ HERO ══════════════ -->
   <div class="hero">
-    <img src="images/family-main.jpeg" alt="Family" class="hero-img"
+    <img src="family-main.jpeg" alt="Family" class="hero-img"
          onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a3c6e,#0a1628)'">
     <div class="hero-overlay"></div>
     <div class="hero-badge">V-Card</div>
@@ -448,7 +447,7 @@
   <!-- ══════════════ PROFILE ══════════════ -->
   <div class="profile-wrap fade-up">
     <div class="main-avatar">
-      <img src="images/family-main.jpeg" alt="Family Avatar"
+      <img src="family-main.jpeg" alt="Family Avatar"
            onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-home\\' style=\\'font-size:36px;color:#c8a951;margin-top:28px\\'></i>';">
     </div>
     <h1>Ganesh Family</h1>
@@ -550,7 +549,7 @@
 
   <script>
     /* ═══════════════════════════════════════
-       DATA — All image paths connected
+       DATA — All image paths connected directly
     ═══════════════════════════════════════ */
     const familyMembers = [
       {
@@ -559,7 +558,7 @@
         role: 'Father',
         phone: '+91 99805 62722',
         phoneClean: '919980562722',
-        photo: 'images/ganesh.jpeg',
+        photo: 'ganesh.jpeg',
         initials: 'KG'
       },
       {
@@ -568,7 +567,7 @@
         role: 'Mother',
         phone: '+91 99865 22722',
         phoneClean: '919986522722',
-        photo: 'images/rashmi.jpeg',
+        photo: 'rashmi.jpeg',
         initials: 'RS'
       },
       {
@@ -577,7 +576,7 @@
         role: 'Son',
         phone: '+91 90191 52722',
         phoneClean: '919019152722',
-        photo: 'images/vishwesh.jpeg',
+        photo: 'VISHVESSHWARA.jpeg',
         initials: 'VK'
       },
       {
@@ -586,22 +585,22 @@
         role: 'Son',
         phone: '+91 90192 02722',
         phoneClean: '919019202722',
-        photo: 'images/vidyashankar.jpeg',
+        photo: 'VIDYASHANKAR.jpeg',
         initials: 'VG'
       }
     ];
 
-    // Album photos: a1.jpeg through a9.jpeg
+    // Album photos updated based on your folder files
     let albumPhotos = [
-      'images/a1.jpeg',
-      'images/a2.jpeg',
-      'images/a3.jpeg',
-      'images/a4.jpeg',
-      'images/a5.jpeg',
-      'images/a6.jpeg',
-      'images/a7.jpeg',
-      'images/a8.jpeg',
-      'images/a9.jpeg',
+      'A1.jpeg',
+      'a2.jpeg',
+      'a3.jpeg',
+      'a4.jpeg',
+      'a5.jpeg',
+      'a6.jpeg',
+      'a7.jpeg',
+      'a8.jpeg',
+      'a9.jpeg',
     ];
 
     /* ═══════════════════════════════════════
