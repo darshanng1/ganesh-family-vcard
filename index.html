@@ -1,1 +1,792 @@
 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh Family | Digital V-Card</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1a3c6e;
+      --primary-light: #2d5f8a;
+      --gold: #c8a951;
+      --gold-light: #e8d5a3;
+      --dark: #0a1628;
+      --dark2: #111d32;
+      --card: #ffffff;
+      --bg: #f0ebe0;
+      --text: #1a1a2e;
+      --muted: #888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      max-width: 440px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 340px;
+      overflow: hidden;
+      border-radius: 0 0 32px 32px;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 35%, var(--dark) 100%);
+    }
+    .hero-badge {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 9px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .hero-social {
+      position: absolute;
+      top: 20px; right: 20px;
+      display: flex;
+      gap: 8px;
+    }
+    .hero-social a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s;
+    }
+    .hero-social a:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── PROFILE ── */
+    .profile-wrap {
+      position: relative;
+      margin-top: -70px;
+      padding: 0 20px;
+      text-align: center;
+      z-index: 2;
+    }
+    .main-avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 0 0 8px var(--dark), 0 8px 40px rgba(0,0,0,0.5);
+      margin: 0 auto 14px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .main-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .main-avatar .fallback { color: var(--gold); font-size: 40px; }
+
+    .profile-wrap h1 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    .profile-wrap .subtitle {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .profile-wrap .location {
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .profile-wrap .location i { color: var(--gold); margin-right: 4px; }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 20px 20px;
+    }
+    .gold-divider span {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(200,169,81,0.4), transparent);
+    }
+    .gold-divider i { color: var(--gold); font-size: 8px; }
+
+    /* ── ACTION BUTTONS ── */
+    .action-row {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .action-btn:active { transform: scale(0.96); }
+    .btn-save {
+      background: linear-gradient(135deg, var(--gold), #dfc060);
+      color: var(--dark);
+      box-shadow: 0 6px 20px rgba(200,169,81,0.3);
+    }
+    .btn-share {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ── INFO CARD ── */
+    .info-card {
+      background: var(--card);
+      border-radius: 20px;
+      margin: 0 16px 14px;
+      padding: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: #fff;
+      flex-shrink: 0;
+    }
+    .card-title-row h6 { font-size: 14px; font-weight: 700; color: var(--dark); margin: 0; }
+    .card-title-row small { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* ── MEMBER CARD ── */
+    .member-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: 16px;
+      margin-bottom: 10px;
+      transition: transform 0.2s;
+    }
+    .member-card:last-child { margin-bottom: 0; }
+    .member-card:active { transform: scale(0.98); }
+
+    .member-photo {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--gold-light);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .member-photo .initials {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .member-photo .photo-edit-badge {
+      position: absolute;
+      bottom: -2px; right: -2px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7px; color: var(--dark);
+      border: 2px solid var(--bg);
+    }
+
+    .member-details { flex: 1; min-width: 0; }
+    .member-details .mname {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .member-details .mrole {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+    .member-details .mphone {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .member-dial {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+    .dial-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: #fff;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .dial-btn:active { transform: scale(0.88); }
+    .dial-call { background: linear-gradient(135deg, #25d366, #128c7e); }
+    .dial-wa   { background: linear-gradient(135deg, #128c7e, #075e54); }
+
+    /* ── ADDRESS ── */
+    .addr-block { padding: 4px 0; }
+    .addr-block p {
+      font-size: 12px;
+      color: #55;
+      line-height: 1.9;
+      margin: 0;
+    }
+    .addr-block strong { color: var(--dark); }
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .map-btn:hover { opacity: 0.85; color: #fff; }
+
+    /* ── ALBUM ── */
+    .album-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .album-scroll::-webkit-scrollbar { height: 4px; }
+    .album-scroll::-webkit-scrollbar-track { background: transparent; }
+    .album-scroll::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 4px; }
+
+    .album-item {
+      flex: 0 0 140px;
+      height: 140px;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      scroll-snap-align: start;
+      position: relative;
+      transition: transform 0.25s;
+    }
+    .album-item:hover { transform: scale(1.03); }
+    .album-item img {
+      width: 10%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .album-item:hover img { transform: scale(1.1); }
+    .album-item .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+      display: flex; align-items: flex-end;
+      padding: 10px;
+    }
+    .album-item:hover .overlay { opacity: 1; }
+    .overlay span { color: #fff; font-size: 10px; font-weight: 600; }
+
+    .album-add {
+      flex: 0 0 140px;
+      height: 140px;
+      border-radius: 14px;
+      border: 2px dashed rgba(200,169,81,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: rgba(200,169,81,0.04);
+    }
+    .album-add:hover { border-color: var(--gold); background: rgba(200,169,81,0.08); }
+    .album-add i { font-size: 24px; color: var(--gold); margin-bottom: 6px; }
+    .album-add span { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 92%; max-height: 75vh;
+      border-radius: 12px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.6);
+    }
+    .lb-close {
+      position: absolute; top: 20px; right: 20px;
+      color: #fff; font-size: 28px;
+      background: rgba(255,255,255,0.1);
+      border: none; width: 44px; height: 44px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: #fff; font-size: 20px;
+      background: rgba(255,255,255,0.12);
+      border: none; width: 48px; height: 48px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lb-nav:hover { background: var(--gold); color: var(--dark); }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+    .lb-counter { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 30px 16px 24px;
+      color: rgba(255,255,255,0.2);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .footer span { color: var(--gold); }
+
+    /* ─ ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+
+    /* hidden file inputs */
+    .hidden-input { display: none; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      padding: 0 20px;
+      margin-bottom: 10px;
+    }
+    .section-label span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <div class="hero">
+    <!-- DUMMY HERO IMAGE — replace src with your own -->
+    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80"
+         alt="Family" class="hero-img"
+         onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1a3c6e,#0a1628)'">
+    <div class="hero-overlay"></div>
+    <div class="hero-badge">V-Card</div>
+    <div class="hero-social">
+      <a href="https://wa.me/919980562722" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="tel:+919980562722"><i class="fas fa-phone"></i></a>
+    </div>
+  </div>
+
+  <!-- ══════════════ PROFILE ══════════════ -->
+  <div class="profile-wrap fade-up">
+    <!-- DUMMY AVATAR — replace src with your own -->
+    <div class="main-avatar">
+      <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=300&q=80"
+           alt="Family"
+           onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas fa-home\\' style=\\'font-size:36px;color:#c8a951;margin-top:28px\\'></i>';">
+    </div>
+    <h1>Ganesh Family</h1>
+    <div class="subtitle">K S Ganesh &amp; Family</div>
+    <div class="location"><i class="fas fa-map-marker-alt"></i> Nagasandra, Bangalore – 560073</div>
+  </div>
+
+  <!-- ══════════════ ACTION BUTTONS ══════════════ -->
+  <div class="action-row fade-up" style="margin-top:20px">
+    <button class="action-btn btn-save" onclick="downloadVCF()">
+      <i class="fas fa-user-plus"></i> Save Contact
+    </button>
+    <button class="action-btn btn-share" onclick="shareCard()">
+      <i class="fas fa-share-alt"></i> Share
+    </button>
+  </div>
+
+  <div class="gold-divider"><span></span><i class="fas fa-diamond"></i><span></span></div>
+
+  <!-- ══════════════ FAMILY MEMBERS ══════════════ -->
+  <div class="section-label fade-up"><span>Family Members</span></div>
+
+  <div class="info-card fade-up" id="membersCard">
+    <div class="card-title-row">
+      <div class="card-icon" style="background:linear-gradient(135deg,#1a3c6e,#2d5f8a)">
+        <i class="fas fa-users"></i>
+      </div>
+      <div>
+        <h6>Our Family</h6>
+        <small>4 Members</small>
+      </div>
+    </div>
+    <!-- Members injected by JS -->
+  </div>
+
+  <div class="gold-divider"><span></span><i class="fas fa-diamond"></i><span></span></div>
+
+  <!-- ══════════════ ADDRESS ══════════════ -->
+  <div class="section-label fade-up"><span>Location</span></div>
+
+  <div class="info-card fade-up">
+    <div class="card-title-row">
+      <div class="card-icon" style="background:linear-gradient(135deg,#c8a951,#dfc060)">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+      <div>
+        <h6>Home Address</h6>
+        <small>Bangalore, India</small>
+      </div>
+    </div>
+    <div class="addr-block">
+      <p>
+        <strong>Flat No. 212</strong>, String Estates<br>
+        Siddeshwara Apartment, No. 8<br>
+        Siddeshwara Layout, Nagasandra Post<br>
+        <strong>Bangalore</strong> – 560073, Karnataka
+      </p>
+    </div>
+    <a href="https://maps.app.goo.gl/JeFWjLaJceXYrg2Q6?g_st=awI" target="_blank" class="map-btn">
+      <i class="fas fa-location-arrow"></i> Open in Google Maps
+    </a>
+  </div>
+
+  <div class="gold-divider"><span></span><i class="fas fa-diamond"></i><span></span></div>
+
+  <!-- ══════════════ ALBUM ══════════════ -->
+  <div class="section-label fade-up"><span>Family Album</span></div>
+
+  <div class="info-card fade-up">
+    <div class="card-title-row">
+      <div class="card-icon" style="background:linear-gradient(135deg,#8b5e3c,#c8a951)">
+        <i class="fas fa-images"></i>
+      </div>
+      <div>
+        <h6>Memories</h6>
+        <small>Unlimited Photos</small>
+      </div>
+    </div>
+    <div class="album-scroll" id="albumScroll">
+      <!-- Photos injected by JS -->
+      <div class="album-add" onclick="document.getElementById('albumInput').click()">
+        <i class="fas fa-plus"></i>
+        <span>Add Photo</span>
+      </div>
+    </div>
+    <input type="file" id="albumInput" class="hidden-input" accept="image/*" multiple onchange="handleAlbumUpload(event)">
+  </div>
+
+  <div class="footer">
+    Made with <span>♥</span> for Ganesh Family &bull; 2026
+  </div>
+
+  <!-- ══════════════ LIGHTBOX ══════════════ -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLB()">&times;</button>
+    <button class="lb-nav lb-prev" onclick="navLB(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-nav lb-next" onclick="navLB(1)"><i class="fas fa-chevron-right"></i></button>
+    <img id="lbImg" src="" alt="Preview" />
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════
+       DATA — Replace photo URLs with your own
+    ═══════════════════════════════════════ */
+    const familyMembers = [
+      {
+        id: 'ganesh',
+        name: 'Ganesh K S',
+        role: 'Father',
+        phone: '+91 99805 62722',
+        phoneClean: '919980562722',
+        // 👇 REPLACE with your image URL or local path
+        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+        initials: 'KG'
+      },
+      {
+        id: 'rashmi',
+        name: 'Rashmi',
+        role: 'Mother',
+        phone: '+91 99865 22722',
+        phoneClean: '919986522722',
+        // 👇 REPLACE with your image URL or local path
+        photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
+        initials: 'RS'
+      },
+      {
+        id: 'vishwesh',
+        name: 'Vishweshwara K G',
+        role: 'Son',
+        phone: '+91 90191 52722',
+        phoneClean: '919019152722',
+        // 👇 REPLACE with your image URL or local path
+        photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+        initials: 'VK'
+      },
+      {
+        id: 'vidyashankar',
+        name: 'Vidyashankar K G',
+        role: 'Son',
+        phone: '+91 90192 02722',
+        phoneClean: '919019202722',
+        // 👇 REPLACE with your image URL or local path
+        photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80',
+        initials: 'VG'
+      }
+    ];
+
+    // 👇 ADD / REMOVE album photos freely — unlimited
+    let albumPhotos = [
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+      'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
+    ];
+
+    /* ═══════════════════════════════════════
+       RENDER MEMBERS
+    ═══════════════════════════════════════ */
+    function renderMembers() {
+      const card = document.getElementById('membersCard');
+      const header = card.querySelector('.card-title-row').outerHTML;
+      card.innerHTML = header;
+
+      familyMembers.forEach(m => {
+        const row = document.createElement('div');
+        row.className = 'member-card';
+        row.innerHTML = `
+          <div class="member-photo-wrap" onclick="document.getElementById('photo-${m.id}').click()">
+            <div class="member-photo">
+              <img src="${m.photo}" alt="${m.name}"
+                   onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\\'initials\\'>${m.initials}</span>';">
+              <div class="photo-edit-badge"><i class="fas fa-camera"></i></div>
+            </div>
+            <input type="file" id="photo-${m.id}" class="hidden-input" accept="image/*"
+                   onchange="uploadMemberPhoto(event, '${m.id}')">
+          </div>
+          <div class="member-details">
+            <div class="mname">${m.name}</div>
+            <div class="mrole">${m.role}</div>
+            <div class="mphone">${m.phone}</div>
+          </div>
+          <div class="member-dial">
+            <a href="tel:${m.phoneClean}" class="dial-btn dial-call" title="Call">
+              <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://wa.me/${m.phoneClean}" target="_blank" class="dial-btn dial-wa" title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        `;
+        card.appendChild(row);
+      });
+    }
+
+    /* ═══════════════════════════════════════
+       UPLOAD MEMBER PHOTO (browser)
+    ═══════════════════════════════════════ */
+    function uploadMemberPhoto(event, id) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const member = familyMembers.find(m => m.id === id);
+        member.photo = e.target.result;
+        const photoDiv = document.querySelector(`#photo-${id}`).closest('.member-photo-wrap').querySelector('.member-photo');
+        const img = photoDiv.querySelector('img');
+        if (img) { img.src = e.target.result; img.style.display = 'block'; }
+        const init = photoDiv.querySelector('.initials');
+        if (init) init.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ═══════════════════════════════════════
+       RENDER ALBUM
+    ═══════════════════════════════════════ */
+    function renderAlbum() {
+      const scroll = document.getElementById('albumScroll');
+      const addBtn = scroll.querySelector('.album-add');
+      scroll.innerHTML = '';
+
+      albumPhotos.forEach((src, i) => {
+        const item = document.createElement('div');
+        item.className = 'album-item';
+        item.innerHTML = `
+          <img src="${src}" alt="Photo ${i+1}" loading="lazy"
+               onerror="this.parentElement.style.display='none'">
+          <div class="overlay"><span>Photo ${i+1}</span></div>
+        `;
+        item.onclick = () => openLB(i);
+        scroll.appendChild(item);
+      });
+
+      if (addBtn) scroll.appendChild(addBtn);
+    }
+
+    /* ═══════════════════════════════════════
+       ALBUM UPLOAD (unlimited)
+    ═══════════════════════════════════════ */
+    function handleAlbumUpload(event) {
+      const files = event.target.files;
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          albumPhotos.push(e.target.result);
+          renderAlbum();
+        };
+        reader.readAsDataURL(file);
+      });
+      event.target.value = '';
+    }
+
+    /* ═══════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════ */
+    let lbIndex = 0;
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCounter = document.getElementById('lbCounter');
+
+    function openLB(index) {
+      lbIndex = index;
+      lbImg.src = albumPhotos[index];
+      lbCounter.textContent = `${index + 1} / ${albumPhotos.length}`;
+      lb.classList.add('active');
+    }
+    function closeLB() { lb.classList.remove('active'); }
+    function navLB(dir) {
+      lbIndex = (lbIndex + dir + albumPhotos.length) % albumPhotos.length;
+      lbImg.src = albumPhotos[lbIndex];
+      lbCounter.textContent = `${lbIndex + 1} / ${albumPhotos.length}`;
+    }
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') navLB(-1);
+      else if (e.key === 'ArrowRight') navLB(1);
+      else if (e.key === 'Escape') closeLB();
+    });
+
+    /* ═══════════════════════════════════════
+       SAVE CONTACT (VCF)
+    ═══════════════════════════════════════ */
+    function downloadVCF() {
+      let vcard = 'BEGIN:VCARD\nVERSION:3.0\nFN:Ganesh Family\nN:Ganesh;K S;;;\nNOTE:Bangalore, India\nEND:VCARD\n';
+      familyMembers.forEach(m => {
+        vcard += `BEGIN:VCARD\nVERSION:3.0\nFN:${m.name}\nTEL;TYPE=CELL:${m.phoneClean}\nEND:VCARD\n`;
+      });
+      const blob = new Blob([vcard], { type: 'text/vcard' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Ganesh_Family.vcf';
+      a.click();
+    }
+
+    /* ═══════════════════════════════════════
+       SHARE
+    ═══════════════════════════════════════ */
+    function shareCard() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Ganesh Family V-Card',
+          text: 'Save the Ganesh Family contact details!',
+          url: window.location.href
+        });
+      } else {
+        navigator.clipboard.writeText(window.location.href)
+          .then(() => alert('Link copied to clipboard!'));
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════════ */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* ═══════════════════════════════════════
+       INIT
+    ═══════════════════════════════════════ */
+    renderMembers();
+    renderAlbum();
+  </script>
+</body>
+</html>
+
